@@ -1,0 +1,19 @@
+<div [ngSwitch]="sudokuService.gameState$|async">
+    <div class="pre-filled" *ngSwitchCase="gameState.Dormant">
+        {{0}}
+    </div>
+    <div *ngSwitchCase="gameState.Playing">
+        <div class="pre-filled" *ngIf="cell.isPrefilled; else blankSpace">
+            {{cell.value}}
+        </div>
+        <ng-template #blankSpace>
+            <input class="input-area" type="number" min="1" max="9" [(ngModel)]="val" (ngModelChange)="update($event)">
+        </ng-template>
+    </div>
+    <div *ngSwitchCase="gameState.Finished">
+            <div class="finished pre-filled">
+                {{cell.value}}
+            </div>
+        </div>
+</div>
+

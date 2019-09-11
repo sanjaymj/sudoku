@@ -1,0 +1,5 @@
+<div [ngSwitch]="sudokuService.gameState$|async">
+    <div *ngSwitchCase="gameState.Playing">
+            {{start | date:'HH:mm:ss'}}
+    </div>
+</div>

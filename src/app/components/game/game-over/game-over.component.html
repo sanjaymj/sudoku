@@ -1,0 +1,10 @@
+<div class="buttons" [ngSwitch]="sudokuService.gameState$|async">
+<div *ngSwitchCase="gameState.Finished">
+    <div class="game-over-text">
+        Puzzle Solved in
+    </div>
+    <div class="time">
+        {{sudokuService.getTimeToSolveChallenge() | date:'HH:mm:ss'}}
+    </div>
+</div>
+</div>
