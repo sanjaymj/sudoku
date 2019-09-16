@@ -12,7 +12,7 @@ export class TimeComponent implements OnInit {
 
   public gameState = GameState;
   start = new Date(0,0,0);
-  constructor(private sudokuService: SudokuService) { }
+  constructor(public sudokuService: SudokuService) { }
 
   ngOnInit() {
     const res = this.sudokuService.gameState$.pipe(switchMap((state) => {
