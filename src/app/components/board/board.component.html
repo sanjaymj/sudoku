@@ -1,0 +1,7 @@
+<table class="table" border="5">
+    <tr *ngFor="let row of boardArray; let i=index">
+        <td *ngFor="let item of row; let j=index">
+            <app-inner-board [currentBoard]="getCurrentBoard(i*3 + j)"></app-inner-board>
+        </td>
+    </tr>
+</table>

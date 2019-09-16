@@ -1,0 +1,8 @@
+<table class="table" border="2">
+    <tr *ngFor="let row of currentBoard">
+            <td class="data" *ngFor="let item of row">
+            <app-cell [cell]="item">
+                </app-cell>
+            </td>
+        </tr>
+</table>

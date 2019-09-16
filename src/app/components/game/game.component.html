@@ -1,0 +1,16 @@
+<div class="wrapper">
+    <app-board class="board"></app-board>
+    <div class="buttons" [ngSwitch]="sudokuService.gameState$|async">
+        <div *ngSwitchCase="gameState.Dormant">
+            <button name="buttonStart" (click)="startGame()">Start Game</button>
+        </div>
+        <div *ngSwitchCase="gameState.Finished">
+            <button name="buttonRestart" (click)="startGame()">Restart Game</button><br>
+        </div>
+        <div *ngSwitchCase="gameState.Playing">
+            <button name="buttonStop" (click)="stopGame()">Stop Game</button>
+        </div>
+    </div>
+    <app-time class="timer"></app-time>
+    <app-game-over></app-game-over>
+</div>
