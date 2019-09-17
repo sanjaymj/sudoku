@@ -3,6 +3,15 @@
     <div class="buttons" [ngSwitch]="sudokuService.gameState$|async">
         <div *ngSwitchCase="gameState.Dormant">
             <button name="buttonStart" (click)="startGame()">Start Game</button>
+            <div *ngFor="let option of difficultyLevel">
+                <div class="radio">
+                    <input type="radio"
+                       name="radio"
+                       [(ngModel)]="gameDifficulty"
+                       [value]="option.value"/>
+                    <label for="radio-{{option.id}}">{{option.id}}</label>
+                </div>
+            </div>
         </div>
         <div *ngSwitchCase="gameState.Finished">
             <button name="buttonRestart" (click)="startGame()">Restart Game</button><br>
