@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject, BehaviorSubject, from } from 'rxjs';
 import { Cell } from '../model/cell.model';
+import { BoardCreationService } from './board.creation.service';
+import { DifficultyLevel } from './difficulty.level.service';
 
 export enum GameState {
     Dormant = 1,
@@ -25,6 +27,8 @@ export class SudokuService {
 
     private timeToFinishGame: Date = new Date();
 
+    private difficultyLevel=  DifficultyLevel.Easy;
+
     constructor() {
         this.initSudokuBoard();
         this.sudokuBoard$.subscribe(() => {
@@ -33,6 +37,8 @@ export class SudokuService {
     }
 
     private initSudokuBoard() {
+        const createBoard = new BoardCreationService(this.difficultyLevel);
+        this.initialBoardStructure = createBoard.getGameBoard();
         this.mapInputToSudokuTable();
         this.divideBoardToSmallerTables();
     }
@@ -145,7 +151,8 @@ export class SudokuService {
         return transposedArray;
     }
 
-    public startGame() {
+    public startGame(difficulty: DifficultyLevel) {
+        this.difficultyLevel = difficulty;
         this.sudokuBoard = [];
         this.innerBoards = [];
         this.initSudokuBoard();
